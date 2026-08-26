@@ -1,7 +1,7 @@
-# Deploying the Halvyn site for free
+# Deploying halvyn.co.in
 
 The site is plain HTML and CSS. There is no build step, no npm install, and no
-server. Any static host will serve it. Two free options below.
+server. The domain `halvyn.co.in` is registered at GoDaddy.
 
 ## Files
 
@@ -12,105 +12,164 @@ halvyn-site/
 ├── index.html                   Halvyn company homepage
 ├── planvio.html                 Planvio product page
 ├── styles.css                   shared design system, both pages
+├── CNAME                        custom domain for GitHub Pages
 ├── assets/halvyn-mark.svg       Halvyn logo mark
 ├── assets/mark.svg              Planvio logo mark
-├── assets/favicon.svg           Halvyn tab icon (used by index.html)
-├── assets/favicon-planvio.svg   Planvio tab icon (used by planvio.html)
-├── BRAND.md                     brand guide (published but harmless; delete if you prefer)
+├── assets/favicon.svg           Halvyn tab icon (index.html)
+├── assets/favicon-planvio.svg   Planvio tab icon (planvio.html)
+├── BRAND.md                     brand guide
 └── DEPLOY.md                    this file
 ```
 
-`index.html` is the front door at `halvyn.pages.dev`. Ads that promote Planvio
-should link straight to `halvyn.pages.dev/planvio.html`.
+`index.html` is the front door at `halvyn.co.in`. Ads promoting Planvio should
+link straight to `halvyn.co.in/planvio.html`.
 
 ---
 
-## Option A: GitHub Pages (recommended)
+## Important: registering a domain is not hosting
 
-Free, no credit card, and you already use git.
+GoDaddy sold you the **name**. It does not serve your files. You still need a
+host, and you do not need to buy one: GitHub Pages will serve this site for free
+and issue a free HTTPS certificate for `halvyn.co.in`.
 
-1. Create a new **public** repository on GitHub called `halvyn-site`.
-2. From this folder, run:
+The GoDaddy MCP connector cannot help with any of this. It only exposes domain
+availability search and name suggestions, with no access to DNS records,
+nameservers, or hosting. Every step below is done by hand in the GoDaddy and
+GitHub web interfaces.
+
+---
+
+## Step 0: validate WHOIS first (do this today)
+
+The domain dashboard shows **"Your domain is pending WHOIS verification"**.
+
+Click **Validate**, then open the confirmation email GoDaddy sends to the
+registrant address and click the link in it. ICANN requires registrars to
+**suspend** a domain that stays unverified past the deadline, which would take
+`halvyn.co.in` offline entirely. Some DNS and nameserver changes are also
+blocked while it is pending, so this can silently break the steps below.
+
+Do not continue until the yellow banner is gone.
+
+---
+
+## Step 1: put the site on GitHub
+
+Create a **public** repository called `halvyn-site` on GitHub, then:
 
 ```bash
-git init && git add . && git commit -m "Planvio marketing site" && git branch -M main && git remote add origin https://github.com/YOUR-USERNAME/halvyn-site.git && git push -u origin main
+git -C "C:/Users/admin/Desktop/halvyn-site" remote add origin https://github.com/YOUR-USERNAME/halvyn-site.git
 ```
 
-3. In the repo: **Settings → Pages → Build and deployment → Source: Deploy from a branch**, pick `main` and `/ (root)`, then Save.
-4. Wait about a minute. The site is live at:
-
-```
-https://YOUR-USERNAME.github.io/halvyn-site/
+```bash
+git -C "C:/Users/admin/Desktop/halvyn-site" push -u origin main
 ```
 
-Every later `git push` redeploys automatically.
+## Step 2: turn on GitHub Pages
 
----
+In the repository: **Settings → Pages → Build and deployment**.
+Set **Source** to `Deploy from a branch`, branch `main`, folder `/ (root)`. Save.
 
-## Option B: Cloudflare Pages
+Wait about a minute, then confirm the site loads at
+`https://YOUR-USERNAME.github.io/halvyn-site/` before touching DNS. If it does
+not load, fix that first. DNS problems are much harder to diagnose on top of a
+broken build.
 
-Slightly nicer URL and faster globally.
+## Step 3: point the domain at GitHub (GoDaddy DNS)
 
-1. Push the folder to GitHub as above.
-2. Go to **dash.cloudflare.com → Workers & Pages → Create → Pages → Connect to Git**.
-3. Pick the repo. Leave the build command **empty** and the output directory as `/`.
-4. **Name the project `halvyn`** (lowercase, this becomes the subdomain).
-5. Deploy. The site is live at `https://halvyn.pages.dev`.
+Go to **GoDaddy → My Products → halvyn.co.in → DNS → DNS Records**.
 
-Both `halvyn` and `planvio` were confirmed unclaimed on 2026-08-26. Cloudflare
-project names are globally unique and claimed on creation, so consider creating
-a second empty `planvio` project to reserve that name too. It costs nothing, and
-you can point it at the same repo later if you decide the product name suits ad
-traffic better.
+**First, delete the existing parked record.** There is currently an
+`A` record on `@` with the value **Parked**. That is GoDaddy's placeholder page
+and it will win over anything you add. Delete it.
 
----
+Then add these records:
 
-## About the "free domain"
+| Type | Name | Value | TTL |
+|---|---|---|---|
+| A | @ | `185.199.108.153` | 600 seconds |
+| A | @ | `185.199.109.153` | 600 seconds |
+| A | @ | `185.199.110.153` | 600 seconds |
+| A | @ | `185.199.111.153` | 600 seconds |
+| CNAME | www | `YOUR-USERNAME.github.io` | 1 hour |
 
-There is no longer a genuinely free custom domain. Freenom stopped issuing
-`.tk`, `.ml`, `.ga`, `.cf`, and `.gq` names, so the old free-TLD route is gone.
+Optionally also add IPv6, which lets the site load on IPv6-only networks:
 
-What you actually get for free is the **host subdomain**:
-
-- `halvyn.pages.dev` (chosen)
-- `yourname.github.io/halvyn-site`
-
-That is fine for validating the idea and running your first ads. When you are
-ready to look established, a real domain costs roughly **$12 to $40 per year**.
-Note that Cloudflare Pages supports custom domains **on the free plan**, so
-attaching one later costs nothing beyond the domain itself:
-
-| Domain | Rough yearly cost | Notes |
+| Type | Name | Value |
 |---|---|---|
-| `planvio.app` | $14 to $20 | Best fit, forces HTTPS |
-| `planvio.io` | $32 to $45 | Common for software, pricier |
-| `planvio.com` | $10 to $15 | Check availability first |
-| `getplanvio.com` | $10 to $15 | Fallback if the bare name is gone |
+| AAAA | @ | `2606:50c0:8000::153` |
+| AAAA | @ | `2606:50c0:8001::153` |
+| AAAA | @ | `2606:50c0:8002::153` |
+| AAAA | @ | `2606:50c0:8003::153` |
 
-Buy from Cloudflare Registrar (sold at cost, no markup) or Namecheap. Then in
-GitHub Pages or Cloudflare Pages add the custom domain and follow the DNS
-instructions. Both give you free HTTPS.
+**Leave everything else alone.** The two `NS` records pointing at
+`ns67.domaincontrol.com` and `ns68.domaincontrol.com` are GoDaddy's own
+nameservers and must stay. The `email` and `_domainkey` CNAME records belong to
+GoDaddy email and DKIM signing; deleting them breaks your mail.
+
+## Step 4: attach the domain in GitHub
+
+Back in **Settings → Pages → Custom domain**, enter `halvyn.co.in` and save.
+GitHub will run a DNS check. Once it passes, tick **Enforce HTTPS**.
+
+The `CNAME` file in this repository already contains `halvyn.co.in`, so GitHub
+picks the domain up automatically and a redeploy will not wipe it.
+
+DNS usually propagates in 10 to 30 minutes on a 600 second TTL, but allow up to
+24 hours. The HTTPS certificate is issued after DNS resolves, so **Enforce
+HTTPS** may stay greyed out for an hour or so. That is normal.
+
+---
+
+## Verifying it worked
+
+```bash
+nslookup halvyn.co.in
+```
+
+You want the four `185.199.x.153` addresses back, not a GoDaddy parking IP.
+Then open `https://halvyn.co.in` and check that the padlock is present and the
+Planvio link in the nav works.
+
+---
+
+## Alternative: Cloudflare Pages
+
+Cloudflare Pages is faster globally and has a better dashboard, but it needs you
+to **change your nameservers** at GoDaddy to Cloudflare's, because an apex
+domain like `halvyn.co.in` cannot use a plain CNAME and Cloudflare solves that
+with CNAME flattening.
+
+That is a bigger change than adding a few records, and nameserver changes are
+one of the actions commonly blocked while WHOIS verification is pending. Start
+with GitHub Pages. Move to Cloudflare later if you want the extra speed, with no
+change to these files.
 
 ---
 
 ## Before you run ads, finish these
 
-1. **Wire up BOTH forms.** `index.html` (contact) and `planvio.html` (demo
+1. **Wire up both forms.** `index.html` (contact) and `planvio.html` (demo
    request) each have `var ENDPOINT = '';` near the bottom. Paste your Power
    Automate lead-flow HTTP URL or a free Formspree endpoint into both. Until
    then they fall back to opening the visitor's email client, which works but
    loses some leads.
-2. **Replace the contact address.** `hello@halvyn.com` appears in both pages.
-   Point it at a mailbox you actually read.
-3. **Add real product screenshots.** The hero currently shows an honest flow
-   diagram. Once the demo environment is seeded with fake company data, capture
-   screenshots and add them below the hero. Do not use screenshots containing
-   real Sand Star data.
-4. **Set a price signal.** The pricing section says "Custom quote". A visible
+2. **Replace the contact address.** `hello@halvyn.com` appears in both pages and
+   does not match your domain. It should almost certainly be
+   `hello@halvyn.co.in`, and you need a mailbox behind it. You already have
+   GoDaddy email DNS records in place, so a mailbox on this domain is likely
+   available to you.
+3. **Fix the About facts.** `index.html` has a `TODO` for your registered
+   location, and "Founded 2026" is an assumption that should be confirmed.
+4. **Add real product screenshots.** The Planvio page currently shows an honest
+   flow diagram. Once the demo environment is seeded with fictional company
+   data, capture screenshots and add them. Never use screenshots containing real
+   Sand Star data.
+5. **Set a price signal.** The pricing section says "Custom quote". A visible
    starting number measurably increases demo bookings for business software.
    The `TODO pricing` comment marks the spot.
-5. **Add analytics.** Google Analytics or Plausible, so you can tell which ad
-   channel produced which demo request.
-6. **Swap the audience photos.** The two photos in the "Who it's for" section
-   load from picsum.photos as placeholders. Replace them with licensed stock or
-   your own photography before launch.
+6. **Add analytics.** Google Analytics or Plausible, so you can tell which ad
+   channel produced which enquiry.
+7. **Swap the audience photos.** The two photos on the Planvio page load from
+   picsum.photos as placeholders. Replace them with licensed stock or your own
+   photography before launch.

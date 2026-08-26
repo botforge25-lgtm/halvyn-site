@@ -158,14 +158,15 @@ recolour outside the palette, add effects, or rebuild either mark as a letter.
 
 ## Hosting
 
-- **Site:** static HTML and CSS, no build step. Deploys free to Cloudflare Pages.
-  See `DEPLOY.md`.
-- **Live URL:** `halvyn.pages.dev` (Cloudflare Pages project name `halvyn`).
-  Both `halvyn` and `planvio` were verified unclaimed on 2026-08-26.
-- **Free domain** means the host subdomain only. Truly free custom TLDs no
-  longer exist since Freenom stopped issuing them. Budget roughly $12 to $40 per
-  year for `planvio.app` once you start selling. Cloudflare Pages supports
-  custom domains on the free plan, so only the domain itself costs money.
+- **Domain:** `halvyn.co.in`, registered at GoDaddy.
+- **Site:** static HTML and CSS, no build step. Served free by GitHub Pages,
+  with GoDaddy keeping DNS. See `DEPLOY.md` for the exact records.
+- **Registering a domain is not hosting.** GoDaddy sold the name only. The files
+  are served by GitHub Pages, which also issues the free HTTPS certificate.
+- The `CNAME` file in the repository root holds `halvyn.co.in` so GitHub keeps
+  the custom domain across redeploys. Do not delete it.
+- The Planvio product page lives at `halvyn.co.in/planvio.html`. If Planvio ever
+  needs its own domain, `planvio.app` runs roughly $14 to $20 a year.
 
 ## Positioning line (for ads)
 
