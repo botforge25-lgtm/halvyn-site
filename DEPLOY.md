@@ -53,7 +53,7 @@ Do not continue until the yellow banner is gone.
 
 ---
 
-## Step 1: put the site on GitHub  — DONE
+## Step 1: put the site on GitHub (DONE)
 
 Repository: **https://github.com/botforge25-lgtm/halvyn-site** (public).
 Pushed on 2026-08-26. The remote is already configured, so future updates are
