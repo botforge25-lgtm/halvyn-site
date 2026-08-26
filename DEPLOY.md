@@ -154,11 +154,12 @@ change to these files.
    Automate lead-flow HTTP URL or a free Formspree endpoint into both. Until
    then they fall back to opening the visitor's email client, which works but
    loses some leads.
-2. **Replace the contact address.** `hello@halvyn.com` appears in both pages and
-   does not match your domain. It should almost certainly be
-   `hello@halvyn.co.in`, and you need a mailbox behind it. You already have
-   GoDaddy email DNS records in place, so a mailbox on this domain is likely
-   available to you.
+2. **Create the mailbox.** Both pages now point at `info@halvyn.co.in`, and the
+   contact forms fall back to it when no `ENDPOINT` is set. That address has to
+   actually receive mail. You already have GoDaddy email DNS records in place
+   (`email.secureserver.net` plus the DKIM CNAMEs), so a mailbox on this domain
+   should be available under your GoDaddy account. Send yourself a test message
+   before running any ads.
 3. **Fix the About facts.** `index.html` has a `TODO` for your registered
    location, and "Founded 2026" is an assumption that should be confirmed.
 4. **Add real product screenshots.** The Planvio page currently shows an honest
