@@ -43,6 +43,7 @@
       planvio
     </a>
     <nav class="nav" aria-label="Main">
+      <a href="#tour">Product</a>
       <a href="#platform">Platform</a>
       <a href="#how">How it works</a>
       <a href="#who">Who it's for</a>
@@ -57,52 +58,22 @@
 
 <!-- ============================ hero ============================ -->
 <section class="shell hero">
-  <div class="hero__grid">
-    <div>
-      <h1 class="h-display">Every project.<br>One platform.</h1>
-      <p class="lede">Leads, estimates, schedules, timesheets, and invoices in one
-        system instead of five tools and a spreadsheet.</p>
-      <div class="hero__cta">
-        <a class="btn btn--primary" href="#demo">Book a demo</a>
-        <a class="btn btn--ghost" href="#platform">See the platform</a>
-      </div>
-    </div>
-
-    <!-- Lifecycle diagram. This is a schematic of the product flow, not a
-         screenshot. Replace with real product screenshots once the demo
-         environment is seeded. -->
-    <div class="diagram reveal">
-      <p class="diagram__title">One record, five stages</p>
-      <svg viewBox="0 0 420 340" width="100%" role="img"
-           aria-label="A project record moving through five stages: lead, estimate, plan, deliver, and invoice.">
-        <line x1="26" y1="26" x2="26" y2="314" stroke="#D8D2DE" stroke-width="2"/>
-        <line x1="26" y1="26" x2="26" y2="170" stroke="#5C4BB8" stroke-width="2"/>
-
-        <g font-family="'Plus Jakarta Sans', sans-serif">
-          <!-- 1 -->
-          <circle cx="26" cy="26" r="8" fill="#5C4BB8"/>
-          <text x="56" y="22" fill="#241A2B" font-size="17" font-weight="600">Lead</text>
-          <text x="56" y="42" fill="#6B5F76" font-size="13" font-family="'JetBrains Mono', monospace">contact, source, value</text>
-          <!-- 2 -->
-          <circle cx="26" cy="98" r="8" fill="#5C4BB8"/>
-          <text x="56" y="94" fill="#241A2B" font-size="17" font-weight="600">Estimate</text>
-          <text x="56" y="114" fill="#6B5F76" font-size="13" font-family="'JetBrains Mono', monospace">cost basis, margin, quote</text>
-          <!-- 3 -->
-          <circle cx="26" cy="170" r="8" fill="#FFFFFF" stroke="#5C4BB8" stroke-width="2.5"/>
-          <text x="56" y="166" fill="#241A2B" font-size="17" font-weight="600">Plan</text>
-          <text x="56" y="186" fill="#6B5F76" font-size="13" font-family="'JetBrains Mono', monospace">tasks, people, baseline</text>
-          <!-- 4 -->
-          <circle cx="26" cy="242" r="8" fill="#FFFFFF" stroke="#D8D2DE" stroke-width="2.5"/>
-          <text x="56" y="238" fill="#6B5F76" font-size="17" font-weight="600">Deliver</text>
-          <text x="56" y="258" fill="#6B5F76" font-size="13" font-family="'JetBrains Mono', monospace">progress, changes, hours</text>
-          <!-- 5 -->
-          <circle cx="26" cy="314" r="8" fill="#FFFFFF" stroke="#D8D2DE" stroke-width="2.5"/>
-          <text x="56" y="310" fill="#6B5F76" font-size="17" font-weight="600">Invoice</text>
-          <text x="56" y="330" fill="#6B5F76" font-size="13" font-family="'JetBrains Mono', monospace">bill, collect, reconcile</text>
-        </g>
-      </svg>
+  <div class="hero__lead">
+    <h1 class="h-display">Every project.<br>One platform.</h1>
+    <p class="lede">Leads, estimates, schedules, timesheets, and invoices in one
+      system instead of five tools and a spreadsheet.</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" href="#demo">Book a demo</a>
+      <a class="btn btn--ghost" href="#tour">See the product</a>
     </div>
   </div>
+
+  <figure class="hero__shot reveal">
+    <img src="assets/shots/delivery-progress.png" width="1920" height="898"
+         fetchpriority="high" decoding="async"
+         alt="Planvio's delivery view: every live project on one screen, each with a bar for when it actually runs and a mark for the date it was due to finish.">
+    <figcaption>Every live project, and whether it is still on time.</figcaption>
+  </figure>
 </section>
 
 <!-- ============================ capability strip ============================ -->
@@ -129,6 +100,119 @@
   </div>
   <hr class="rule">
 </div>
+
+<!-- ============================ product tour ============================ -->
+<section class="shell section" id="tour">
+  <p class="eyebrow">The product</p>
+  <h2 class="h-section">This is the whole thing.<br>No mock-ups.</h2>
+  <p class="body-mute" style="margin-top:18px;max-width:62ch">
+    Every screen below is the live product running against a demo company &mdash;
+    a services firm with sixteen projects, real hours booked against them, and
+    invoices that reconcile. Click through the modules and see what your team
+    would actually open on a Monday morning.
+  </p>
+
+  <div class="tour reveal">
+    <div class="tour__tabs" role="tablist" aria-label="Product screens">
+      <button class="tour__tab" role="tab" id="tab-pipeline"  aria-controls="panel-pipeline"  aria-selected="true">Pipeline</button>
+      <button class="tour__tab" role="tab" id="tab-planning"  aria-controls="panel-planning"  aria-selected="false">Planning</button>
+      <button class="tour__tab" role="tab" id="tab-delivery"  aria-controls="panel-delivery"  aria-selected="false">Delivery</button>
+      <button class="tour__tab" role="tab" id="tab-capacity"  aria-controls="panel-capacity"  aria-selected="false">Capacity</button>
+      <button class="tour__tab" role="tab" id="tab-time"      aria-controls="panel-time"      aria-selected="false">Time</button>
+      <button class="tour__tab" role="tab" id="tab-assurance" aria-controls="panel-assurance" aria-selected="false">Assurance</button>
+      <button class="tour__tab" role="tab" id="tab-finance"   aria-controls="panel-finance"   aria-selected="false">Finance</button>
+      <button class="tour__tab" role="tab" id="tab-people"    aria-controls="panel-people"    aria-selected="false">People</button>
+    </div>
+
+    <div class="tour__panel" role="tabpanel" id="panel-pipeline" aria-labelledby="tab-pipeline">
+      <div class="tour__frame">
+        <img class="tour__shot" src="assets/shots/pipeline-dashboard.png" width="1920" height="898" loading="lazy" decoding="async"
+             alt="Planvio's pipeline dashboard: weighted pipeline value, win rate, and a stage funnel showing how many deals reached each stage and what share carried on to the next.">
+      </div>
+      <div class="tour__cap">
+        <p><b>Where the money might come from.</b> The funnel shows how many deals reached each stage and what share carried on, so you can see where you lose them rather than only what is left. Pipeline value is weighted by win probability, not the sum of every hopeful number on the list.</p>
+        <span class="tour__meta">Pipeline &rarr; Dashboard</span>
+      </div>
+    </div>
+
+    <div class="tour__panel" role="tabpanel" id="panel-planning" aria-labelledby="tab-planning" hidden>
+      <div class="tour__frame">
+        <img class="tour__shot" src="assets/shots/planning-schedule.png" width="1920" height="898" loading="lazy" decoding="async"
+             alt="A project plan in Planvio, broken into work packages, with progress by package and a task grid beneath.">
+      </div>
+      <div class="tour__cap">
+        <p><b>The plan, and whether it is still true.</b> Tasks group into work packages with dates, hours and cost on every line. Submit the plan for review and it locks &mdash; from then on the baseline is what you measure drift against, instead of a number that quietly moved.</p>
+        <span class="tour__meta">Planning &rarr; Schedule</span>
+      </div>
+    </div>
+
+    <div class="tour__panel" role="tabpanel" id="panel-delivery" aria-labelledby="tab-delivery" hidden>
+      <div class="tour__frame">
+        <img class="tour__shot" src="assets/shots/delivery-progress.png" width="1920" height="898" loading="lazy" decoding="async"
+             alt="Planvio's delivery view: one row per project, with a bar for when it actually runs and a mark for the date it was due to finish.">
+      </div>
+      <div class="tour__cap">
+        <p><b>Every project, on one screen, honestly.</b> One row each: the bar is when the project actually runs, the mark is when it was due to finish. Late is visible as distance, not buried in a status field somebody forgot to update.</p>
+        <span class="tour__meta">Delivery &rarr; Progress</span>
+      </div>
+    </div>
+
+    <div class="tour__panel" role="tabpanel" id="panel-capacity" aria-labelledby="tab-capacity" hidden>
+      <div class="tour__frame">
+        <img class="tour__shot" src="assets/shots/capacity-grid.png" width="1920" height="898" loading="lazy" decoding="async"
+             alt="A person-by-week grid in Planvio, each cell shaded by how booked that person is in that week.">
+      </div>
+      <div class="tour__cap">
+        <p><b>Who is free, and when.</b> A cell per person per week, shaded by how booked they are. Past weeks show hours actually logged; future weeks show what is committed. Approved leave is taken off the week it falls in, not smeared across the month.</p>
+        <span class="tour__meta">Capacity &rarr; Capacity Pool</span>
+      </div>
+    </div>
+
+    <div class="tour__panel" role="tabpanel" id="panel-time" aria-labelledby="tab-time" hidden>
+      <div class="tour__frame">
+        <img class="tour__shot" src="assets/shots/time-timesheet.png" width="1920" height="898" loading="lazy" decoding="async"
+             alt="Planvio's time dashboard: hours logged, submitted-on-time and approval lag, with a week-by-person grid and a submitted-reviewed-approved funnel.">
+      </div>
+      <div class="tour__cap">
+        <p><b>Who has filled their timesheet in.</b> A week per person, shaded by hours, so a thin week is visible before payroll asks. Hours land against a task, which is what makes a project's cost and its margin move on their own &mdash; and unbilled hours are counted, not guessed at.</p>
+        <span class="tour__meta">Time &rarr; Dashboard</span>
+      </div>
+    </div>
+
+    <div class="tour__panel" role="tabpanel" id="panel-assurance" aria-labelledby="tab-assurance" hidden>
+      <div class="tour__frame">
+        <img class="tour__shot" src="assets/shots/assurance-risk.png" width="1920" height="898" loading="lazy" decoding="async"
+             alt="A five-by-five likelihood and impact matrix in Planvio, with risk counts in each square.">
+      </div>
+      <div class="tour__cap">
+        <p><b>Risk you can actually read.</b> Likelihood against impact, counts in the squares, the dangerous corner where you expect it. Click a square and the register below filters to those risks &mdash; the matrix is a control, not a picture.</p>
+        <span class="tour__meta">Assurance &rarr; Risk</span>
+      </div>
+    </div>
+
+    <div class="tour__panel" role="tabpanel" id="panel-finance" aria-labelledby="tab-finance" hidden>
+      <div class="tour__frame">
+        <img class="tour__shot" src="assets/shots/finance-invoices.png" width="1920" height="898" loading="lazy" decoding="async"
+             alt="Planvio's finance dashboard: unpaid invoices grouped by age, alongside billed, paid, days-to-get-paid and credit-used figures.">
+      </div>
+      <div class="tour__cap">
+        <p><b>What is owed, and how late.</b> Unpaid invoices grouped by age, so the shape of what is outstanding is the first thing you see. Days to get paid comes from the last year's billing rather than a guess, and overdue is derived from the due date rather than trusted from a stale status.</p>
+        <span class="tour__meta">Finance &rarr; Dashboard</span>
+      </div>
+    </div>
+
+    <div class="tour__panel" role="tabpanel" id="panel-people" aria-labelledby="tab-people" hidden>
+      <div class="tour__frame">
+        <img class="tour__shot" src="assets/shots/people-team.png" width="1920" height="898" loading="lazy" decoding="async"
+             alt="Planvio's people dashboard: headcount, attrition, median tenure and open reviews, with a tenure distribution chart and the reporting lines.">
+      </div>
+      <div class="tour__cap">
+        <p><b>Who you have, and how long they stay.</b> Tenure by band, and who carries the reporting lines. Attrition reads as a dash until a leaving date exists &mdash; an empty column is not evidence that nobody has left. Pay, burden and bill rate stay three separate numbers, because treating them as one is how a project looks profitable until it is finished.</p>
+        <span class="tour__meta">People &rarr; Dashboard</span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ============================ platform / bento ============================ -->
 <section class="shell section" id="platform">
@@ -252,8 +336,9 @@
   <div class="audience">
     <article class="aud reveal">
       <div class="aud__media">
-        <img src="https://picsum.photos/seed/planvio-software-team-desk/960/540"
-             alt="A software team working together at a desk" loading="lazy" width="960" height="540">
+        <img src="assets/shots/capacity-grid.png"
+             alt="Planvio's capacity grid, showing who is booked week by week."
+             loading="lazy" decoding="async" width="1920" height="898">
       </div>
       <div class="aud__body">
         <h3>Software and IT teams</h3>
@@ -268,8 +353,9 @@
 
     <article class="aud reveal">
       <div class="aud__media">
-        <img src="https://picsum.photos/seed/planvio-field-crew-site-plans/960/540"
-             alt="A field crew reviewing plans on site" loading="lazy" width="960" height="540">
+        <img src="assets/shots/assurance-risk.png"
+             alt="Planvio's risk matrix, plotting likelihood against impact."
+             loading="lazy" decoding="async" width="1920" height="898">
       </div>
       <div class="aud__body">
         <h3>Field and services teams</h3>
@@ -495,6 +581,7 @@
       <div>
         <h4>Product</h4>
         <ul>
+          <li><a href="#tour">Product</a></li>
           <li><a href="#platform">Platform</a></li>
           <li><a href="#how">How it works</a></li>
           <li><a href="#who">Who it's for</a></li>
@@ -540,7 +627,47 @@
 })();
 
 /* ---------------------------------------------------------------------------
-   2. Demo request form.
+   2. Product tour tabs.
+
+   Panels are real elements with the `hidden` attribute rather than CSS-only
+   toggles, so a screen reader is told which one is current and lazy images in
+   the hidden panels are not fetched until their tab is opened.
+
+   Arrow keys move between tabs, per the WAI-ARIA tabs pattern — a tablist that
+   only responds to clicks is a keyboard trap for anyone not using a mouse.
+   ------------------------------------------------------------------------ */
+(function () {
+  var tablist = document.querySelector('.tour__tabs');
+  if (!tablist) return;
+  var tabs = Array.prototype.slice.call(tablist.querySelectorAll('.tour__tab'));
+
+  function select(tab, focus) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      var panel = document.getElementById(t.getAttribute('aria-controls'));
+      if (panel) { panel.hidden = !on; }
+    });
+    if (focus) tab.focus();
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.tabIndex = tab.getAttribute('aria-selected') === 'true' ? 0 : -1;
+    tab.addEventListener('click', function () { select(tab, false); });
+    tab.addEventListener('keydown', function (e) {
+      var next = null;
+      if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') next = tabs[0];
+      else if (e.key === 'End') next = tabs[tabs.length - 1];
+      if (next) { e.preventDefault(); select(next, true); }
+    });
+  });
+})();
+
+/* ---------------------------------------------------------------------------
+   3. Demo request form.
 
    ENDPOINT: set this to where the lead should go. Two good options:
      a) Your existing Power Automate "Planvio Lead" HTTP trigger URL.

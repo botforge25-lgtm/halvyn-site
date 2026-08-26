@@ -200,18 +200,43 @@ img, svg { max-width: 100%; }
 
 .hero { padding-top: clamp(52px, 6.5vw, 88px); padding-bottom: clamp(56px, 7vw, 92px); }
 
-.hero__grid {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(40px, 6vw, 72px);
-  align-items: center;
+/* The hero is one column now: headline, then the product at full width.
+   A screenshot squeezed into a half-width column is unreadable at 1920px
+   wide, and a hero that cannot show the interface legibly may as well not
+   show it. */
+.hero__lead { max-width: 60ch; }
+
+.hero__shot {
+  margin: clamp(38px, 5vw, 60px) 0 0;
+  border-radius: var(--r-media);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg);
+  background: var(--surface-2);
+}
+.hero__shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1920 / 898;
+  object-fit: cover;
+  object-position: top left;
+}
+.hero__shot figcaption {
+  padding: 13px 20px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--text-mute);
 }
 
 .hero h1 { max-width: 15ch; }
 .hero .lede { margin-top: 22px; }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
 
-/* honest schematic, not a product screenshot */
+/* Schematic block. No longer used on the Planvio hero (a real
+   screenshot replaced it); retained for other pages. */
 .diagram {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -386,7 +411,14 @@ img, svg { max-width: 100%; }
   box-shadow: var(--shadow-sm);
 }
 .aud__media { aspect-ratio: 16 / 9; overflow: hidden; background: var(--surface-2); }
-.aud__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.aud__media img {
+  width: 100%; height: 100%; display: block;
+  object-fit: cover;
+  /* These are screenshots, not photography. Anchoring top-left keeps the
+     navigation and the first rows of content in frame when the 1920x898
+     capture is cropped to 16:9; centring would slice the useful part out. */
+  object-position: top left;
+}
 .aud__body { padding: 26px 26px 30px; }
 .aud h3 { font-size: 1.28rem; margin-bottom: 10px; }
 .aud p { color: var(--text-mute); font-size: 15px; }
@@ -727,4 +759,90 @@ img, svg { max-width: 100%; }
     transition: opacity .6s var(--ease), transform .6s var(--ease);
   }
   .reveal.is-in { opacity: 1; transform: none; }
+}
+
+/* ---------- product tour ----------
+   A tabbed gallery of real screens. The point of this section is to stop
+   describing the product and show it: someone deciding whether Planvio fits
+   their business wants to see the actual screen they would live in, not an
+   illustration of one. */
+
+.tour__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 28px 0 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.tour__tab {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text-mid);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 15px;
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  transition: background .18s var(--ease), border-color .18s var(--ease),
+              color .18s var(--ease);
+}
+.tour__tab:hover { border-color: #CFC5D8; color: var(--text); }
+.tour__tab[aria-selected="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+.tour__tab:focus-visible {
+  outline: 3px solid rgba(92, 75, 184, .3);
+  outline-offset: 2px;
+}
+
+/* The frame. A hairline and a soft shadow are enough to read as "a window"
+   without drawing a fake browser: chrome around a screenshot dates fast and
+   competes with the interface it is meant to present. */
+.tour__frame {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-media);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.tour__shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Screens are captured wide; this keeps a consistent block height so
+     switching tabs does not make the page jump. */
+  aspect-ratio: 1920 / 898;
+  object-fit: cover;
+  object-position: top center;
+  background: var(--surface-2);
+}
+
+.tour__panel[hidden] { display: none; }
+
+.tour__cap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px 28px;
+  align-items: start;
+  margin-top: 18px;
+}
+.tour__cap p { margin: 0; color: var(--text-mid); font-size: 15.5px; }
+.tour__cap b { color: var(--text); font-weight: 600; }
+.tour__meta {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--text-mute);
+  white-space: nowrap;
+  padding-top: 3px;
+}
+@media (max-width: 720px) {
+  .tour__cap { grid-template-columns: 1fr; }
+  .tour__meta { white-space: normal; }
 }
