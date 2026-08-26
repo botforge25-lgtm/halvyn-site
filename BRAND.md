@@ -1,4 +1,4 @@
-# Halvyn / Planvio — Brand Guide
+# Halvyn / Planvio  Brand Guide
 
 _Last updated 2026-08-26. Source of truth for the website and the app theme._
 
@@ -22,15 +22,10 @@ the product it showcases.
 | `index.html` at `halvyn.pages.dev` | Halvyn | `assets/halvyn-mark.svg` | `assets/favicon.svg` |
 | `planvio.html` | Planvio | `assets/mark.svg` | `assets/favicon-planvio.svg` |
 
-Both pages share `styles.css` and the same emerald accent. Emerald is the
-**house colour**, inherited by Planvio rather than owned by it. If Halvyn ever
-ships a second product, that product gets its own accent on its own page, and
-Halvyn stays emerald.
-
-**Two marks, one family.** The Planvio mark is a rising route with a
-destination node, meaning motion and journey. The Halvyn mark is a structural
-"H" whose crossbar rises on the same angle, meaning the frame the work runs on.
-Same tile, same emerald, same ink.
+Both pages share `styles.css` and the same steel accent. **Halvyn is the primary
+identity** and steel blue is the house colour, inherited by Planvio rather than
+owned by it. If Halvyn ever ships a second product, that product may take its
+own accent on its own page, and Halvyn stays steel.
 
 ### Name clearance (checked 2026-08-26)
 
@@ -78,34 +73,44 @@ game-changing, synergy, empower.
 
 ## Palette (locked, one accent, used everywhere)
 
-The site runs a single dark theme. The app runs light with the same accent hue.
+A single **light** theme: warm near-white paper with a cold steel-blue accent.
+Calm, editorial, and established, which suits the Nordic sound of the name.
 
 | Token | Hex | Role |
 |---|---|---|
-| `--ink` | `#0A1210` | Page background |
-| `--ink-2` | `#101A17` | Raised surfaces, cards |
-| `--ink-3` | `#16221E` | Hover surfaces, input fills |
-| `--line` | `#1E2C27` | Borders, hairlines |
-| `--mist` | `#E6EFEA` | Primary text |
-| `--mute` | `#93A79E` | Secondary text |
-| **`--accent`** | `#35C48C` | **The brand accent.** Buttons, links, active states, the logo mark |
-| `--accent-deep` | `#1B8F66` | Hover and pressed states, deep fills |
-| `--on-accent` | `#06110D` | Text on top of accent fills |
+| `--paper` | `#FAFAF8` | Page background, warm near-white |
+| `--surface` | `#FFFFFF` | Cards and raised panels |
+| `--surface-2` | `#F3F3EF` | Subtle fills, footer, hover |
+| `--surface-3` | `#ECECE6` | Deeper fills |
+| `--line` | `#E3E3DC` | Borders |
+| `--line-soft` | `#EBEBE5` | Hairlines inside panels |
+| `--text` | `#12161B` | Primary text |
+| `--text-mid` | `#39434E` | List and secondary body text |
+| `--text-mute` | `#5F6B75` | Muted text, labels |
+| **`--accent`** | `#2C6E8F` | **The brand accent.** Buttons, links, active states, the marks |
+| `--accent-deep` | `#1A4A62` | Hover and pressed states, the darker half of the logo |
+| `--accent-wash` | `#EAF2F6` | Tinted panel backgrounds, chips |
+| `--on-accent` | `#FFFFFF` | Text on top of accent fills |
+| `--danger` | `#A8262C` | Form errors only, never decorative |
 
-Emerald is the only accent. No violet, no cyan, no navy. Those belong to the old
-Sand Star / Polaris360 look and must not appear anywhere in Planvio.
+Steel blue is the only accent. **No emerald, no violet, no cyan, no navy.**
+Emerald was an earlier direction and is retired. Violet, cyan, and navy belong
+to the old Sand Star / Polaris360 look.
 
-Status colours (in-app only): emerald = good, amber = attention, rose = problem,
+Contrast is verified: white on `--accent` is 5.7:1, `--accent` on `--paper` is
+5.5:1, and `--text-mute` on `--paper` is 5.5:1. All pass WCAG AA.
+
+Status colours (in-app only): green = good, amber = attention, red = problem,
 slate = neutral. Semantic states, not brand colours.
 
 ### App theme equivalents (oklch, wired in `planvio-app/src/index.css`)
 
 ```
-light  --primary: oklch(0.55 0.125 165)   --accent: oklch(0.74 0.135 165)
-dark   --primary: oklch(0.70 0.145 165)   --accent: oklch(0.70 0.130 165)
+light  --primary: oklch(0.50 0.080 233)   --accent: oklch(0.66 0.070 233)
+dark   --primary: oklch(0.70 0.085 233)   --accent: oklch(0.72 0.075 233)
 ```
 
-Hue **165** is the Planvio hue. The old app used hue 250 (navy) and 175 (teal).
+Hue **233** is the house hue. The old app used hue 250 (navy) and 175 (teal).
 
 ## Type
 
@@ -118,19 +123,38 @@ Hue **165** is the Planvio hue. The old app used hue 250 (navy) and 175 (teal).
 Never Inter. Headlines are tight (`letter-spacing: -0.03em`), body is relaxed
 (`line-height: 1.65`, max 65 characters per line).
 
-## Logo
+## Logos
 
-**Mark:** a rounded emerald tile containing a route, a path that steps up and to the
-right through two nodes. It reads as "the way the plan runs".
+Both marks are **abstract geometry, not letterforms**, and both are built from
+the same shape: a **keystone**, the wedge that locks an arch together. It is the
+piece everything else rests on, which is the honest description of what Halvyn
+builds.
 
-**Wordmark:** `planvio` in Plus Jakarta Sans, weight 800, lowercase,
-`letter-spacing: -0.035em`.
+**Halvyn** is one keystone, split down the middle into two tones so it reads as
+light falling across a single solid form. `--accent-deep` on the left,
+`--accent` on the right.
 
-Files: `assets/mark.svg` (mark only), `assets/favicon.svg` (tab icon).
-The horizontal lockup is composed in HTML so the webfont applies to the wordmark.
+**Planvio** is three keystones in ascending order: the same structural form put
+into sequence. Plan, then the way through it. Tones step from `#7FA8BC` through
+`--accent` to `--accent-deep`.
 
-Clear space around the lockup equals the mark's corner radius. Never stretch,
-recolour outside the palette, or add effects.
+The marks sit on the page with **no tile behind them**, which suits the light
+editorial theme. Only the favicons use a filled tile, because a thin shape
+disappears at 16 pixels.
+
+| File | What |
+|---|---|
+| `assets/halvyn-mark.svg` | Halvyn keystone, transparent background |
+| `assets/mark.svg` | Planvio ascending keystones, transparent background |
+| `assets/favicon.svg` | Halvyn on a filled `--accent-deep` tile |
+| `assets/favicon-planvio.svg` | Planvio on a filled `--accent` tile |
+
+**Wordmarks:** `halvyn` and `planvio` in Plus Jakarta Sans, weight 800,
+lowercase, `letter-spacing: -0.035em`. The horizontal lockup is composed in HTML
+so the webfont applies to the wordmark rather than being outlined into the SVG.
+
+Clear space around a lockup equals the width of the mark. Never stretch,
+recolour outside the palette, add effects, or rebuild either mark as a letter.
 
 ## Hosting
 
