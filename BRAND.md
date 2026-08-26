@@ -23,7 +23,7 @@ the product it showcases.
 | `planvio.html` | Planvio | `assets/mark.svg` | `assets/favicon-planvio.svg` |
 
 Both pages share `styles.css` and the same violet accent. **Halvyn is the primary
-identity** and steel blue is the house colour, inherited by Planvio rather than
+identity** and periwinkle violet is the house colour, inherited by Planvio rather than
 owned by it. If Halvyn ever ships a second product, that product may take its
 own accent on its own page, and Halvyn stays violet.
 
