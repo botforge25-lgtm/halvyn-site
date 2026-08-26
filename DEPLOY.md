@@ -53,16 +53,14 @@ Do not continue until the yellow banner is gone.
 
 ---
 
-## Step 1: put the site on GitHub
+## Step 1: put the site on GitHub  — DONE
 
-Create a **public** repository called `halvyn-site` on GitHub, then:
-
-```bash
-git -C "C:/Users/admin/Desktop/halvyn-site" remote add origin https://github.com/YOUR-USERNAME/halvyn-site.git
-```
+Repository: **https://github.com/botforge25-lgtm/halvyn-site** (public).
+Pushed on 2026-08-26. The remote is already configured, so future updates are
+just:
 
 ```bash
-git -C "C:/Users/admin/Desktop/halvyn-site" push -u origin main
+git -C "C:/Users/admin/Desktop/halvyn-site" push
 ```
 
 ## Step 2: turn on GitHub Pages
@@ -70,10 +68,14 @@ git -C "C:/Users/admin/Desktop/halvyn-site" push -u origin main
 In the repository: **Settings → Pages → Build and deployment**.
 Set **Source** to `Deploy from a branch`, branch `main`, folder `/ (root)`. Save.
 
-Wait about a minute, then confirm the site loads at
-`https://YOUR-USERNAME.github.io/halvyn-site/` before touching DNS. If it does
-not load, fix that first. DNS problems are much harder to diagnose on top of a
-broken build.
+> **Expect a broken link at first, and do not panic.** Because this repository
+> contains a `CNAME` file, GitHub immediately treats `halvyn.co.in` as the
+> site's real address and **redirects** `botforge25-lgtm.github.io/halvyn-site/`
+> to it. Until Step 3 is done, that redirect leads nowhere. This is normal and
+> it is not a broken build. Go straight to the DNS records.
+>
+> If you genuinely need to preview before DNS is ready, temporarily rename
+> `CNAME` to `CNAME.txt`, push, check the `github.io` URL, then rename it back.
 
 ## Step 3: point the domain at GitHub (GoDaddy DNS)
 
@@ -91,7 +93,7 @@ Then add these records:
 | A | @ | `185.199.109.153` | 600 seconds |
 | A | @ | `185.199.110.153` | 600 seconds |
 | A | @ | `185.199.111.153` | 600 seconds |
-| CNAME | www | `YOUR-USERNAME.github.io` | 1 hour |
+| CNAME | www | `botforge25-lgtm.github.io` | 1 hour |
 
 Optionally also add IPv6, which lets the site load on IPv6-only networks:
 
@@ -130,6 +132,30 @@ nslookup halvyn.co.in
 You want the four `185.199.x.153` addresses back, not a GoDaddy parking IP.
 Then open `https://halvyn.co.in` and check that the padlock is present and the
 Planvio link in the nav works.
+
+---
+
+## Optional: verify the domain on GitHub
+
+GitHub offers **Settings → Pages → Add a verified domain** at the *account*
+level. This is **not required** to publish the site and is not part of the steps
+above.
+
+What it does: it stops anyone else from ever pointing `halvyn.co.in` at *their*
+GitHub Pages site if your DNS records were later misconfigured or the domain
+briefly lapsed. It is a takeover-prevention measure, worth doing once the site
+is live, not a prerequisite.
+
+To do it, add a TXT record at GoDaddy using the exact hostname and value GitHub
+shows on that page (use its Copy buttons rather than retyping, since the value is
+a long random token):
+
+| Type | Name | Value |
+|---|---|---|
+| TXT | `_github-pages-challenge-botforge25-lgtm` | the code shown on the GitHub page |
+
+Then click **Verify**. GoDaddy appends the domain automatically, so enter only
+the `_github-pages-challenge-...` part as the Name, not the full hostname.
 
 ---
 
