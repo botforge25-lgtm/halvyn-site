@@ -1,4 +1,4 @@
-# Halvyn / Planvio  Brand Guide
+# Halvyn / Planvio Brand Guide
 
 _Last updated 2026-08-26. Source of truth for the website and the app theme._
 
