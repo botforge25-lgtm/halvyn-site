@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40" role="img" aria-label="Halvyn">
+  <rect width="40" height="40" rx="11" fill="#35C48C"/>
+  <path d="M12 10.5 V29.5 M28 10.5 V29.5 M12 24 L28 16"
+        fill="none" stroke="#06110D" stroke-width="3.4"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -12,6 +12,26 @@ _Last updated 2026-08-26. Source of truth for the website and the app theme._
 Written together as **"Planvio, by Halvyn"**. Never "Halvyn Planvio".
 Never write the company name inside the product UI.
 
+### Site structure
+
+The website is a **company site first**. Halvyn is the front door; Planvio is
+the product it showcases.
+
+| Page | Identity | Logo | Favicon |
+|---|---|---|---|
+| `index.html` at `halvyn.pages.dev` | Halvyn | `assets/halvyn-mark.svg` | `assets/favicon.svg` |
+| `planvio.html` | Planvio | `assets/mark.svg` | `assets/favicon-planvio.svg` |
+
+Both pages share `styles.css` and the same emerald accent. Emerald is the
+**house colour**, inherited by Planvio rather than owned by it. If Halvyn ever
+ships a second product, that product gets its own accent on its own page, and
+Halvyn stays emerald.
+
+**Two marks, one family.** The Planvio mark is a rising route with a
+destination node, meaning motion and journey. The Halvyn mark is a structural
+"H" whose crossbar rises on the same angle, meaning the frame the work runs on.
+Same tile, same emerald, same ink.
+
 ### Name clearance (checked 2026-08-26)
 
 **Halvyn** came back completely clear. A web search for the name as a company

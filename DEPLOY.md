@@ -1,19 +1,27 @@
-# Deploying the Planvio site for free
+# Deploying the Halvyn site for free
 
 The site is plain HTML and CSS. There is no build step, no npm install, and no
 server. Any static host will serve it. Two free options below.
 
 ## Files
 
+The site is a **company site** (Halvyn) that showcases the product (Planvio).
+
 ```
-planvio-site/
-├── index.html          the whole page
-├── styles.css          the design system
-├── assets/mark.svg     logo mark
-├── assets/favicon.svg  browser tab icon
-├── BRAND.md            brand guide (not published, keep for reference)
-└── DEPLOY.md           this file
+halvyn-site/
+├── index.html                   Halvyn company homepage
+├── planvio.html                 Planvio product page
+├── styles.css                   shared design system, both pages
+├── assets/halvyn-mark.svg       Halvyn logo mark
+├── assets/mark.svg              Planvio logo mark
+├── assets/favicon.svg           Halvyn tab icon (used by index.html)
+├── assets/favicon-planvio.svg   Planvio tab icon (used by planvio.html)
+├── BRAND.md                     brand guide (published but harmless; delete if you prefer)
+└── DEPLOY.md                    this file
 ```
+
+`index.html` is the front door at `halvyn.pages.dev`. Ads that promote Planvio
+should link straight to `halvyn.pages.dev/planvio.html`.
 
 ---
 
@@ -21,18 +29,18 @@ planvio-site/
 
 Free, no credit card, and you already use git.
 
-1. Create a new **public** repository on GitHub called `planvio-site`.
+1. Create a new **public** repository on GitHub called `halvyn-site`.
 2. From this folder, run:
 
 ```bash
-git init && git add . && git commit -m "Planvio marketing site" && git branch -M main && git remote add origin https://github.com/YOUR-USERNAME/planvio-site.git && git push -u origin main
+git init && git add . && git commit -m "Planvio marketing site" && git branch -M main && git remote add origin https://github.com/YOUR-USERNAME/halvyn-site.git && git push -u origin main
 ```
 
 3. In the repo: **Settings → Pages → Build and deployment → Source: Deploy from a branch**, pick `main` and `/ (root)`, then Save.
 4. Wait about a minute. The site is live at:
 
 ```
-https://YOUR-USERNAME.github.io/planvio-site/
+https://YOUR-USERNAME.github.io/halvyn-site/
 ```
 
 Every later `git push` redeploys automatically.
@@ -65,7 +73,7 @@ There is no longer a genuinely free custom domain. Freenom stopped issuing
 What you actually get for free is the **host subdomain**:
 
 - `halvyn.pages.dev` (chosen)
-- `yourname.github.io/planvio-site`
+- `yourname.github.io/halvyn-site`
 
 That is fine for validating the idea and running your first ads. When you are
 ready to look established, a real domain costs roughly **$12 to $40 per year**.
@@ -87,12 +95,13 @@ instructions. Both give you free HTTPS.
 
 ## Before you run ads, finish these
 
-1. **Wire up the form.** Open `index.html`, find `var ENDPOINT = '';` near the
-   bottom, and paste either your Power Automate lead-flow HTTP URL or a free
-   Formspree endpoint. Until then the form falls back to opening the visitor's
-   email client, which works but loses some leads.
-2. **Replace the contact address.** `hello@planvio.app` appears twice in
-   `index.html`. Point it at a mailbox you actually read.
+1. **Wire up BOTH forms.** `index.html` (contact) and `planvio.html` (demo
+   request) each have `var ENDPOINT = '';` near the bottom. Paste your Power
+   Automate lead-flow HTTP URL or a free Formspree endpoint into both. Until
+   then they fall back to opening the visitor's email client, which works but
+   loses some leads.
+2. **Replace the contact address.** `hello@halvyn.com` appears in both pages.
+   Point it at a mailbox you actually read.
 3. **Add real product screenshots.** The hero currently shows an honest flow
    diagram. Once the demo environment is seeded with fake company data, capture
    screenshots and add them below the hero. Do not use screenshots containing
