@@ -2,7 +2,7 @@
   <!-- Keystone: the wedge that locks an arch together. Two tones read as
        light falling across one solid form. -->
   <path d="M7.5 6.5 L20 6.5 L20 33.5 L13.8 33.5 Z"
-        fill="#1A4A62" stroke="#1A4A62" stroke-width="1.6" stroke-linejoin="round"/>
+        fill="#40317F" stroke="#40317F" stroke-width="1.6" stroke-linejoin="round"/>
   <path d="M20 6.5 L32.5 6.5 L26.2 33.5 L20 33.5 Z"
-        fill="#2C6E8F" stroke="#2C6E8F" stroke-width="1.6" stroke-linejoin="round"/>
+        fill="#5C4BB8" stroke="#5C4BB8" stroke-width="1.6" stroke-linejoin="round"/>
 </svg>

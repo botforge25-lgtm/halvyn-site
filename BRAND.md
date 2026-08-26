@@ -22,10 +22,10 @@ the product it showcases.
 | `index.html` at `halvyn.pages.dev` | Halvyn | `assets/halvyn-mark.svg` | `assets/favicon.svg` |
 | `planvio.html` | Planvio | `assets/mark.svg` | `assets/favicon-planvio.svg` |
 
-Both pages share `styles.css` and the same steel accent. **Halvyn is the primary
+Both pages share `styles.css` and the same violet accent. **Halvyn is the primary
 identity** and steel blue is the house colour, inherited by Planvio rather than
 owned by it. If Halvyn ever ships a second product, that product may take its
-own accent on its own page, and Halvyn stays steel.
+own accent on its own page, and Halvyn stays violet.
 
 ### Name clearance (checked 2026-08-26)
 
@@ -73,32 +73,37 @@ game-changing, synergy, empower.
 
 ## Palette (locked, one accent, used everywhere)
 
-A single **light** theme: warm near-white paper with a cold steel-blue accent.
-Calm, editorial, and established, which suits the Nordic sound of the name.
+A single **light** theme: near-white paper with a deep periwinkle-violet accent
+and a dusty rose used sparingly. Refined and distinctive without the corporate
+blue every operations vendor uses.
 
 | Token | Hex | Role |
 |---|---|---|
-| `--paper` | `#FAFAF8` | Page background, warm near-white |
+| `--paper` | `#FBFAFC` | Page background, near-white with a faint plum cast |
 | `--surface` | `#FFFFFF` | Cards and raised panels |
-| `--surface-2` | `#F3F3EF` | Subtle fills, footer, hover |
-| `--surface-3` | `#ECECE6` | Deeper fills |
-| `--line` | `#E3E3DC` | Borders |
-| `--line-soft` | `#EBEBE5` | Hairlines inside panels |
-| `--text` | `#12161B` | Primary text |
-| `--text-mid` | `#39434E` | List and secondary body text |
-| `--text-mute` | `#5F6B75` | Muted text, labels |
-| **`--accent`** | `#2C6E8F` | **The brand accent.** Buttons, links, active states, the marks |
-| `--accent-deep` | `#1A4A62` | Hover and pressed states, the darker half of the logo |
-| `--accent-wash` | `#EAF2F6` | Tinted panel backgrounds, chips |
+| `--surface-2` | `#F4F1F7` | Subtle fills, footer, hover |
+| `--surface-3` | `#ECE6F0` | Deeper fills |
+| `--line` | `#E5DEEA` | Borders |
+| `--line-soft` | `#EFEAF2` | Hairlines inside panels |
+| `--text` | `#241A2B` | Primary text, deep plum-black |
+| `--text-mid` | `#4A3D54` | List and secondary body text |
+| `--text-mute` | `#6B5F76` | Muted text, labels |
+| **`--accent`** | `#5C4BB8` | **The brand accent.** Buttons, links, active states, the marks |
+| `--accent-deep` | `#40317F` | Hover and pressed states, the darker half of the logo |
+| `--accent-wash` | `#F1EEFB` | Tinted panel backgrounds, chips |
+| `--rose` | `#C77E96` | Secondary, used sparingly. Never for status |
 | `--on-accent` | `#FFFFFF` | Text on top of accent fills |
 | `--danger` | `#A8262C` | Form errors only, never decorative |
 
-Steel blue is the only accent. **No emerald, no violet, no cyan, no navy.**
-Emerald was an earlier direction and is retired. Violet, cyan, and navy belong
-to the old Sand Star / Polaris360 look.
+Periwinkle violet is the only accent. **No emerald, no steel blue, no cyan,
+no navy.** Emerald and steel blue were earlier directions and are retired.
 
-Contrast is verified: white on `--accent` is 5.7:1, `--accent` on `--paper` is
-5.5:1, and `--text-mute` on `--paper` is 5.5:1. All pass WCAG AA.
+Red and amber were deliberately rejected as brand accents: the app already uses
+red for problems and amber for attention, so either would make every button
+compete with an error state.
+
+Contrast is verified: white on `--accent` is 6.7:1, `--accent` on `--paper` is
+6.5:1, and `--text-mute` on `--paper` is 5.8:1. All pass WCAG AA.
 
 Status colours (in-app only): green = good, amber = attention, red = problem,
 slate = neutral. Semantic states, not brand colours.
@@ -106,11 +111,11 @@ slate = neutral. Semantic states, not brand colours.
 ### App theme equivalents (oklch, wired in `planvio-app/src/index.css`)
 
 ```
-light  --primary: oklch(0.50 0.080 233)   --accent: oklch(0.66 0.070 233)
-dark   --primary: oklch(0.70 0.085 233)   --accent: oklch(0.72 0.075 233)
+light  --primary: oklch(0.45 0.160 288)   --accent: oklch(0.62 0.130 288)
+dark   --primary: oklch(0.68 0.150 288)   --accent: oklch(0.70 0.130 288)
 ```
 
-Hue **233** is the house hue. The old app used hue 250 (navy) and 175 (teal).
+Hue **288** is the house hue. The old app used hue 250 (navy) and 175 (teal).
 
 ## Type
 
@@ -135,7 +140,7 @@ light falling across a single solid form. `--accent-deep` on the left,
 `--accent` on the right.
 
 **Planvio** is three keystones in ascending order: the same structural form put
-into sequence. Plan, then the way through it. Tones step from `#7FA8BC` through
+into sequence. Plan, then the way through it. Tones step from `#A79BDC` through
 `--accent` to `--accent-deep`.
 
 The marks sit on the page with **no tile behind them**, which suits the light
