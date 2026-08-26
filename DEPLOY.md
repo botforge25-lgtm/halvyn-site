@@ -46,7 +46,14 @@ Slightly nicer URL and faster globally.
 1. Push the folder to GitHub as above.
 2. Go to **dash.cloudflare.com → Workers & Pages → Create → Pages → Connect to Git**.
 3. Pick the repo. Leave the build command **empty** and the output directory as `/`.
-4. Deploy. The site is live at `https://planvio.pages.dev`.
+4. **Name the project `halvyn`** (lowercase, this becomes the subdomain).
+5. Deploy. The site is live at `https://halvyn.pages.dev`.
+
+Both `halvyn` and `planvio` were confirmed unclaimed on 2026-08-26. Cloudflare
+project names are globally unique and claimed on creation, so consider creating
+a second empty `planvio` project to reserve that name too. It costs nothing, and
+you can point it at the same repo later if you decide the product name suits ad
+traffic better.
 
 ---
 
@@ -57,11 +64,13 @@ There is no longer a genuinely free custom domain. Freenom stopped issuing
 
 What you actually get for free is the **host subdomain**:
 
+- `halvyn.pages.dev` (chosen)
 - `yourname.github.io/planvio-site`
-- `planvio.pages.dev`
 
-Both are fine for validating the idea and running your first ads. When you are
-ready to look established, a real domain costs roughly **$12 to $40 per year**:
+That is fine for validating the idea and running your first ads. When you are
+ready to look established, a real domain costs roughly **$12 to $40 per year**.
+Note that Cloudflare Pages supports custom domains **on the free plan**, so
+attaching one later costs nothing beyond the domain itself:
 
 | Domain | Rough yearly cost | Notes |
 |---|---|---|

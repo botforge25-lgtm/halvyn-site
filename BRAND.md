@@ -114,12 +114,14 @@ recolour outside the palette, or add effects.
 
 ## Hosting
 
-- **Site:** static HTML and CSS, no build step. Deploys free to GitHub Pages or
-  Cloudflare Pages. See `DEPLOY.md`.
-- **Free domain** is the host subdomain (`<user>.github.io/planvio-site` or
-  `planvio.pages.dev`). Truly free custom TLDs no longer exist since Freenom
-  stopped issuing them. Budget roughly $12 to $40 per year for `planvio.app`
-  once you start selling.
+- **Site:** static HTML and CSS, no build step. Deploys free to Cloudflare Pages.
+  See `DEPLOY.md`.
+- **Live URL:** `halvyn.pages.dev` (Cloudflare Pages project name `halvyn`).
+  Both `halvyn` and `planvio` were verified unclaimed on 2026-08-26.
+- **Free domain** means the host subdomain only. Truly free custom TLDs no
+  longer exist since Freenom stopped issuing them. Budget roughly $12 to $40 per
+  year for `planvio.app` once you start selling. Cloudflare Pages supports
+  custom domains on the free plan, so only the domain itself costs money.
 
 ## Positioning line (for ads)
 
