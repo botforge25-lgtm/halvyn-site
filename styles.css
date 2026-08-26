@@ -206,26 +206,9 @@ img, svg { max-width: 100%; }
    show it. */
 .hero__lead { max-width: 60ch; }
 
-.hero__shot {
-  margin: clamp(38px, 5vw, 60px) 0 0;
-  border-radius: var(--r-media);
-  overflow: hidden;
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-lg);
-  background: var(--surface-2);
-}
-.hero__shot img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1920 / 898;
-  object-fit: cover;
-  object-position: top left;
-}
+.hero__shot { margin: clamp(38px, 5vw, 60px) 0 0; }
 .hero__shot figcaption {
-  padding: 13px 20px;
-  border-top: 1px solid var(--line);
-  background: var(--surface);
+  margin-top: 12px;
   font-family: var(--mono);
   font-size: 12.5px;
   color: var(--text-mute);
@@ -410,14 +393,18 @@ img, svg { max-width: 100%; }
   background: var(--surface);
   box-shadow: var(--shadow-sm);
 }
-.aud__media { aspect-ratio: 16 / 9; overflow: hidden; background: var(--surface-2); }
-.aud__media img {
-  width: 100%; height: 100%; display: block;
-  object-fit: cover;
-  /* These are screenshots, not photography. Anchoring top-left keeps the
-     navigation and the first rows of content in frame when the 1920x898
-     capture is cropped to 16:9; centring would slice the useful part out. */
-  object-position: top left;
+/* Holds an app mock rather than a photo. The mock is already 16:9 and
+   self-framed, so this only needs to sit it inside the card without adding a
+   second border on top of the card's own. */
+.aud__media { padding: 16px 16px 0; }
+.aud__media .mock {
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
+  /* These sit in a half-width card, where the screen's own content is taller
+     than 16:9 allows — forcing the ratio here clipped a panel mid-row. Let
+     them size to their content instead; the cards are independent, so
+     differing heights cost nothing. */
+  aspect-ratio: auto;
 }
 .aud__body { padding: 26px 26px 30px; }
 .aud h3 { font-size: 1.28rem; margin-bottom: 10px; }
@@ -804,25 +791,9 @@ img, svg { max-width: 100%; }
 /* The frame. A hairline and a soft shadow are enough to read as "a window"
    without drawing a fake browser: chrome around a screenshot dates fast and
    competes with the interface it is meant to present. */
-.tour__frame {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r-media);
-  box-shadow: var(--shadow-lg);
-  overflow: hidden;
-}
-
-.tour__shot {
-  display: block;
-  width: 100%;
-  height: auto;
-  /* Screens are captured wide; this keeps a consistent block height so
-     switching tabs does not make the page jump. */
-  aspect-ratio: 1920 / 898;
-  object-fit: cover;
-  object-position: top center;
-  background: var(--surface-2);
-}
+/* The mock supplies its own border, radius and shadow, so this is only a
+   positioning wrapper. */
+.tour__frame { display: block; }
 
 .tour__panel[hidden] { display: none; }
 
@@ -846,3 +817,152 @@ img, svg { max-width: 100%; }
   .tour__cap { grid-template-columns: 1fr; }
   .tour__meta { white-space: normal; }
 }
+
+/* ==========================================================================
+   App mock — the product screens, rebuilt in HTML.
+   ==========================================================================
+   These replaced raster screenshots. A capture of the running app dragged in
+   the Power Apps host bar, a stray window-preview thumbnail and a link tooltip,
+   weighed 1.2MB, and went soft on a retina display. Rebuilding the screens in
+   markup costs a few KB, stays sharp at any size, and can be corrected in a
+   text editor when the product moves on.
+
+   Everything here is scoped under .mock so it cannot leak into the site, and
+   the palette is the app's own: dark plum rail, violet accent, Plus Jakarta
+   Sans for text and JetBrains Mono for every figure. */
+
+.mock {
+  --m-rail: #2C2442;
+  --m-rail-hi: #3B3157;
+  --m-rail-tx: rgba(255,255,255,.66);
+  --m-rail-on: #F3F0F8;
+  --m-line: #E9E3EE;
+  --m-line-2: #F2EEF6;
+  --m-tx: #241A2B;
+  --m-mute: #7A6E86;
+  --m-accent: #5C4BB8;
+
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr);
+  background: #fff;
+  border-radius: var(--r-media);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lg);
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--m-tx);
+  /* Locked so switching tabs never makes the page jump. */
+  aspect-ratio: 16 / 9;
+}
+@media (max-width: 860px) { .mock { grid-template-columns: 56px minmax(0,1fr); font-size: 10px; } }
+
+/* ---------- rail ---------- */
+.mock__rail { background: var(--m-rail); padding: 10px 0; display: flex; flex-direction: column; min-width: 0; }
+.mock__brand {
+  display: flex; align-items: center; gap: 7px;
+  padding: 0 12px 11px; margin-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  color: var(--m-rail-on); font-weight: 800; font-size: 14px; letter-spacing: -.03em;
+}
+.mock__brand svg { flex: none; }
+.mock__nav { display: grid; gap: 1px; padding: 0 6px; min-width: 0; }
+.mock__nav i {
+  display: flex; align-items: center; gap: 7px;
+  height: 21px; padding: 0 6px; border-radius: 4px;
+  color: var(--m-rail-tx); font-style: normal; font-weight: 500; white-space: nowrap;
+}
+.mock__nav i b { font-weight: 500; }
+.mock__nav i.on { background: var(--m-rail-hi); color: var(--m-rail-on); font-weight: 700; }
+.mock__nav i.sub { padding-left: 22px; height: 18px; font-size: 10.5px; }
+.mock__nav i.sub.on { background: none; color: var(--m-rail-on); font-weight: 700; }
+.mock__dot { width: 5px; height: 5px; border-radius: 2px; flex: none; background: currentColor; opacity: .85; }
+@media (max-width: 860px) { .mock__brand span, .mock__nav i b { display: none; } .mock__nav i.sub { display: none; } }
+
+/* ---------- content ---------- */
+.mock__main { min-width: 0; display: flex; flex-direction: column; background: #fff; }
+.mock__bar {
+  height: 34px; flex: none; display: flex; align-items: center; gap: 9px;
+  padding: 0 14px; border-bottom: 1px solid var(--m-line);
+}
+.mock__eyebrow { font-size: 8.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--m-mute); }
+.mock__title { font-size: 15px; font-weight: 800; letter-spacing: -.03em; }
+.mock__sub { font-size: 10px; color: var(--m-mute); border-left: 1px solid var(--m-line); padding-left: 9px; }
+.mock__body { padding: 12px 14px; display: grid; gap: 10px; align-content: start; min-height: 0; overflow: hidden; }
+
+/* ---------- metric tiles ---------- */
+.mock__tiles { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 8px; }
+.mock__tile { border: 1px solid var(--m-line); border-radius: 5px; padding: 8px 10px 9px; position: relative; overflow: hidden; }
+.mock__tile::before { content: ""; position: absolute; inset: 0 0 auto; height: 2px; background: var(--m-accent); }
+.mock__tile.g::before { background: #16A34A; } .mock__tile.a::before { background: #D97706; }
+.mock__tile.r::before { background: #DC2626; } .mock__tile.b::before { background: #2563EB; }
+.mock__k { color: var(--m-mute); font-size: 9.5px; font-weight: 500; display: flex; gap: 5px; align-items: center; }
+.mock__k em { margin-left: auto; font-style: normal; font-family: var(--mono); font-size: 8.5px; }
+.mock__v { font-family: var(--mono); font-size: 19px; font-weight: 500; letter-spacing: -.02em; margin-top: 4px; }
+.mock__h { color: var(--m-mute); font-size: 9px; margin-top: 3px; }
+
+/* ---------- panels ---------- */
+.mock__panel { border: 1px solid var(--m-line); border-radius: 5px; overflow: hidden; }
+.mock__ph { padding: 7px 10px; border-bottom: 1px solid var(--m-line); }
+.mock__ph b { font-size: 10.5px; font-weight: 600; }
+.mock__ph span { color: var(--m-mute); font-size: 9px; display: block; }
+.mock__pb { padding: 9px 10px; }
+.mock__split { display: grid; grid-template-columns: minmax(0,1.9fr) minmax(0,1fr); gap: 10px; }
+
+/* ---------- rows, bars, chips ---------- */
+.mock__row { display: grid; align-items: center; gap: 8px; padding: 4px 0; border-top: 1px solid var(--m-line-2); }
+.mock__row:first-child { border-top: 0; }
+.mock__nm { font-weight: 600; font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mock__nm s { display: block; text-decoration: none; font-weight: 400; color: var(--m-mute); font-family: var(--mono); font-size: 8.5px; }
+.mock__num { font-family: var(--mono); font-size: 10px; text-align: right; }
+.mock__track { height: 6px; border-radius: 3px; background: var(--m-line-2); position: relative; }
+.mock__fill { position: absolute; top: 0; bottom: 0; border-radius: 3px; background: var(--m-accent); }
+.mock__chip { display: inline-flex; align-items: center; gap: 4px; padding: 1px 7px; border-radius: 999px; font-size: 8.5px; font-weight: 600; border: 1px solid; }
+
+/* ---------- per-screen bits ---------- */
+
+/* Funnel: one row per stage, bar width = share of the biggest stage. */
+.mock__funnel .mock__row { grid-template-columns: 74px 26px minmax(0,1fr) 46px; }
+.mock__conv { font-family: var(--mono); font-size: 8px; color: #16A34A; padding-left: 82px; }
+
+/* Schedule strip: a bar for when a project runs, a tick for when it was due. */
+.mock__sched .mock__row { grid-template-columns: minmax(0,1fr) minmax(0,2.1fr) 34px; }
+.mock__gantt { height: 12px; position: relative; }
+.mock__gantt::before { content:""; position:absolute; left:0; right:0; top:50%; height:1px; background:var(--m-line-2); }
+.mock__gbar { position: absolute; top: 3px; height: 6px; border-radius: 3px; background: #8B93A7; }
+.mock__gtick { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--m-tx); border-radius: 1px; }
+
+/* Capacity heat grid. */
+.mock__heat { display: grid; grid-template-columns: minmax(0,1fr) 40px repeat(12, minmax(0,1fr)); gap: 2px; align-items: center; }
+.mock__heat .hh { font-size: 7.5px; color: var(--m-mute); font-family: var(--mono); text-align: center; }
+.mock__cell { height: 13px; border-radius: 2px; background: #F1EEF6; }
+.mock__cell.l { background: #C7DDF5; } .mock__cell.s { background: #7FB6E8; }
+.mock__cell.f { background: #34C77B; } .mock__cell.o { background: #E8536B; }
+
+/* Risk matrix. */
+.mock__matrix { display: grid; grid-template-columns: 52px repeat(5, minmax(0,1fr)); gap: 3px; align-items: stretch; }
+.mock__matrix .ax { font-size: 8px; color: var(--m-mute); display: flex; align-items: center; justify-content: flex-end; padding-right: 4px; }
+.mock__matrix .ax.b { justify-content: center; padding: 2px 0 0; }
+.mock__sq { height: 26px; border-radius: 3px; display: flex; align-items: center; justify-content: center;
+            font-family: var(--mono); font-size: 11px; font-weight: 500; color: rgba(36,26,43,.30); }
+.mock__sq.n1 { background: #EAF7F0; } .mock__sq.n2 { background: #FDF6E3; }
+.mock__sq.n3 { background: #FBE9DC; } .mock__sq.n4 { background: #F8C9A6; color: var(--m-tx); }
+.mock__sq.n5 { background: #F4A97A; color: var(--m-tx); }
+
+/* Column charts (tenure, ageing). */
+.mock__cols { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0,1fr); gap: 10px; align-items: end; height: 96px; }
+.mock__col { display: grid; align-content: end; justify-items: center; gap: 4px; height: 100%; }
+.mock__col b { font-family: var(--mono); font-size: 9px; font-weight: 500; }
+.mock__col u { display: block; width: 100%; max-width: 46px; text-decoration: none; border-radius: 3px 3px 0 0; background: var(--m-accent); }
+.mock__col u.q2 { background: #7E6FCB; } .mock__col u.q3 { background: #9F93DA; }
+.mock__col u.g { background: #34C77B; }
+.mock__col span { font-size: 8.5px; color: var(--m-mute); }
+
+/* Week-by-person ribbon. */
+.mock__week { display: grid; grid-template-columns: minmax(0,1fr) repeat(7, minmax(0,1fr)) 34px; gap: 3px; align-items: center; }
+.mock__day { height: 15px; border-radius: 2px; background: #F1EEF6; display: flex; align-items: center; justify-content: center;
+             font-family: var(--mono); font-size: 8px; color: rgba(36,26,43,.62); }
+.mock__day.l { background: #D6E9FA; } .mock__day.m { background: #9CCBF0; } .mock__day.h { background: #5AAEE8; color: #fff; }
+
+/* Work-package progress bars. */
+.mock__wp .mock__row { grid-template-columns: 84px minmax(0,1fr); }
