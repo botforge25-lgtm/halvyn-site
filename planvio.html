@@ -9,16 +9,29 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon-planvio.svg">
 <meta name="theme-color" content="#FBFAFC">
 
+<link rel="canonical" href="https://halvyn.co.in/planvio.html">
+
+<!-- Share preview. See the note in index.html: absolute URL, raster only. -->
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Halvyn">
+<meta property="og:url" content="https://halvyn.co.in/planvio.html">
 <meta property="og:title" content="Planvio | Every project. One platform.">
 <meta property="og:description" content="Leads, estimates, schedules, timesheets, and invoices in one system instead of five tools and a spreadsheet.">
-<meta property="og:image" content="assets/mark.svg">
+<meta property="og:image" content="https://halvyn.co.in/assets/og-planvio.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Planvio — every project, one platform.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Planvio | Every project. One platform.">
+<meta name="twitter:description" content="Leads, estimates, schedules, timesheets, and invoices in one system instead of five tools and a spreadsheet.">
+<meta name="twitter:image" content="https://halvyn.co.in/assets/og-planvio.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script src="assets/form-config.js"></script>
 </head>
 <body>
 
@@ -537,7 +550,7 @@
    client with the details pre-filled, so the page still works today.
    ------------------------------------------------------------------------ */
 (function () {
-  var ENDPOINT = '';
+  var ENDPOINT = window.HALVYN_FORM_ENDPOINT || '';
   var FALLBACK_EMAIL = 'info@halvyn.co.in';
 
   var form   = document.getElementById('demo-form');
