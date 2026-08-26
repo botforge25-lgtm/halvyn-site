@@ -1011,7 +1011,17 @@ img, svg { max-width: 100%; }
 }
 
 /* Steps carry a smaller mock than the hero — they support the sentence beside
-   them rather than compete with it. */
-.proc__shot .mock { font-size: 10px; grid-template-columns: 128px minmax(0,1fr); }
+   them rather than compete with it.
+
+   Height is left to the content. The hero holds 16:9 because it is a single
+   fixed showpiece; a step screen carrying a rate card of eight roles is simply
+   taller than that, and forcing the ratio clipped the last row off. Each step
+   is its own grid row, so an uneven height costs nothing. */
+.proc__shot .mock {
+  font-size: 10px;
+  grid-template-columns: 128px minmax(0,1fr);
+  aspect-ratio: auto;
+  min-height: 280px;
+}
 .proc__shot .mock__v { font-size: 17px; }
 @media (max-width: 900px) { .proc__shot .mock { font-size: 9px; grid-template-columns: 108px minmax(0,1fr); } }
